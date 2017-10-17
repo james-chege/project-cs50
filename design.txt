@@ -1,0 +1,18 @@
+This project(shopping helper) is made through python's micro framework called Flask. Flask is a micro web framework written in Python and based on the Werkzeug toolkit and Jinja2 template engine. 
+This project is fully implemented in Flask. These are the functions used.
+The models are implemented via flask sqlalchemy(an object relation mapper(ORM)). The project has two classes, the first defines a table for users and the second defines a table for items.
+There is the use of other various flask extensions (i.e) flask_bootstrap(from which bootstrap is imported), flask_wtf(from which FaskForm is imported) and flask_login(from which LoginManager, UserMixin, login_user, login_required, logout_user, current_user functions are imported). This extensions made it easier to develop this project since I did not have to re-event the wheel again.
+The projects database is accessed via sqlite engine which requires no configuration and stores information in ordinary disk files which makes it an exellent choice for developer.
+
+The following functions are responsible for everything in this project:
+1. "index" function which redirects to the root and renders index.html template.
+2. "login" function which when recieves request via get method displays a login form and  if receives request via post checks the user's details and redirects the user to the dashboard but for invalid details an error message is displayed
+3. "signup" fucntion which works similarly to the login function but contrast in way that a try and except statement is applied whereby try tries to register a user but in a case where database is compromised except checks integrity error and displayed and displays a message. This happen when the user is trying to register with a username or email that is already registered since they are marked as unique.
+The function also stores the password in encrypted way. (I used sha256 encryption method)
+4. "Dashboard" function which displays  a navigation bar and a table containing list of items which a user has created.
+5. "logout" function which logs out by calling a logout_user() function which was imported from flask_login.
+6. "add_item" displays a form where user can input an item name, item quantity and item price and the fuction will calculate the total price of those items and put every thing into database and then display them to the user.
+7. "items" function which queries the database for items and the overal total cash and then displays output.
+8. "delete_task" which takes in an id and romoves that id from the database.
+9. "edit" function which takes in an item id and uses that to edit any details of that item.
+10. "profile" function which display to the user a form via get method and via post tries to change password details.

@@ -1,0 +1,65 @@
+{% extends "bootstrap/base.html" %}
+
+{% block tittle %}
+Shopping List
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+  <link rel="stylesheet" type="text/css" href="{ url_for('.static', filename='styles.css')}">
+{% endblock %}
+
+{% block content %}
+
+  <br/>
+  <div class="container">
+        <form action="{{ url_for('add_item') }}" method="POST">
+            <fieldset>
+            <div style="width: 50%;" class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="todoitem" placeholder="Item name" type="text"/>
+            </div>
+            <div style="width: 50%;" class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="quantity" placeholder="quantity" type="number" min="1"/>
+            </div>
+            <div style="width: 50%;" class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="price" placeholder="price" type="number" step="0.01" min="0.01"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Add Item</button>
+            </div>
+        </fieldset>
+        </form>
+  </div>
+   <h1 style="font-family: helavetica; color: #537fbe;">Shopping list</h1>
+   <table class="table table-striped" style="font-family: helavetica; width:100%">
+      <tr>
+        <th style="color: #537fbe;">Item</th>
+        <th style="color: #537fbe;">Quantity</th>
+        <th style="color: #537fbe;">Price($)</th>
+        <th style="color: #537fbe;">Total($)</th>
+      </tr>
+    {% for todo in items %}
+      <tr>
+        <td style="color: #2e944b"><span style="font-size: 15pt;" >{{ todo.item }}</span> <a style= "color: #ea433b;" href="/delete/{{ todo.id }}">Delete</a>
+        <form action="/edit/{{ todo.id }}" method="POST">
+        <input style="width: auto;" autocomplete="off" autofocus class="form-control" name="value" placeholder="Edit {{ todo.item }}" type="text"/>
+         <input style="width: auto;" autocomplete="off" autofocus class="form-control" name="quantity" placeholder="quantity" type="number" min="1"/>
+       <button class="btn btn-primary" type="submit">Update</button>
+        </form>
+        </td>
+        <td>{{ todo.quantity }}</td>
+        <td>{{ todo.price }}</td>
+        <td>{{ todo.total }}</td>
+      </tr>
+    {% endfor %}
+      <tr style="color: #ea433b;"font-size: 15pt;">
+        <td>Cash</td>
+        <td></td>
+        <td></td>
+        <td>${{ cash }}</td>
+      </tr>
+
+    </table>
+
+
+{% endblock %}
