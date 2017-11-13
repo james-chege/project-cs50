@@ -8,5 +8,5 @@ on a command prompt or a terminal create a python working environment, here is a
 			   You can access the database on a terminal by typing the following command on the project's directory [sqlite3 database.db]
 			   Finally type the following command [flask run] and visit [localhost:5000] in your browser.
 
-This project is cloned from my a private repo to help a learner have an idea on how to do a flask project one module app.
+This project is cloned from my private repo to help a learner have an idea on how to do a flask project one module app.
 Thanks to Zamyla and Irene naya for such a great support via walkthroughs and answering questions.
